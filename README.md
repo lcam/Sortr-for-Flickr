@@ -1,4 +1,4 @@
-# Sortr for Flickr ver 0.1
+# Sortr for Flickr ver 0.1.1
 
 Sortr for Flickr searches for Flickr posts
 
@@ -20,6 +20,9 @@ Submitted by: Leon Cam
 
 ver 0.1
 * [x] Original release
+
+ver 0.1.1
+* [x] Fixed keyboard not hiding after submitting a tag
 
 ## Screenshots
 

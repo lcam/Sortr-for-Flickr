@@ -1,5 +1,6 @@
 package com.leoncam.sortrforflickr.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -74,6 +76,13 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
             case R.id.miSearch:
                 tagInput = mEditText.getText().toString();
                 getData(tagInput);
+
+                //hide keyboard
+                View view = this.getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -98,6 +107,13 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         if (EditorInfo.IME_ACTION_DONE == actionId) {
             tagInput = mEditText.getText().toString();
             getData(tagInput);
+
+            //hide keyboard
+            View view = this.getCurrentFocus();
+            if (view != null) {
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
 
             return true;
         }
