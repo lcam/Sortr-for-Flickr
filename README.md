@@ -23,7 +23,7 @@ ver 0.1
 
 ## Screenshots
 
-<img src='http://i.imgur.com/m3Es138.gif' title='Screenshots' width='' alt='Screenshots' />
+<img src='http://i.imgur.com/3lEHXqt.png' title='Screenshots' width='' alt='Screenshots' />
 
 ## Notes
 
