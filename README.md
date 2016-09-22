@@ -1,4 +1,4 @@
-# Sortr for Flickr ver 0.1.1
+# Sortr for Flickr ver 0.1.2
 
 Sortr for Flickr searches for Flickr posts
 
@@ -8,13 +8,15 @@ Submitted by: Leon Cam
 
 * [x] User can run a Flickr public feed search based on a tag
 * [x] Search results are sorted by upload date, descending order
+* [x] Swipe down on list of search results to refresh the search
 * [x] User can click on a thumbnail image to view its larger version by itself on a new page
 
-## Libraries Used
+## Libraries and Patterns Used
 
 1. [Retrofit](http://github.com/square/retrofit) - REST webservices
 2. [Google GSON](https://github.com/google/gson) - Serialization/Deserialization of service responses
 3. [Picasso](http://square.github.io/picasso/) - Image downloading and caching library for Android.
+4. FlickrAPI
 
 ## Changelog
 
@@ -23,6 +25,9 @@ ver 0.1
 
 ver 0.1.1
 * [x] Fixed keyboard not hiding after submitting a tag
+
+ver 0.1.2
+* [x] Users can now swipe down on list of search results to refresh
 
 ## Screenshots
 
