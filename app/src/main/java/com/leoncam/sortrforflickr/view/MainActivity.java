@@ -54,6 +54,15 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         mNetworkService = new ServiceGenerator(this);
         mGridPresenter = new GridPresenter(this, mNetworkService);
 
+        // Swipe down to refresh
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData(tagInput);
+            }
+        });
+
         rvItems = (RecyclerView)findViewById(R.id.rvImages);
 
         getData("");
