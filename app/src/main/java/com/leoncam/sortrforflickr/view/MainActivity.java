@@ -51,6 +51,11 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         // Setup a callback when the "Done" button is pressed on keyboard
         mEditText.setOnEditorActionListener(this);
 
+        //suppress the soft-keyboard until the user actually touches the editText View
+        getWindow().setSoftInputMode(
+                WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+        );
+
         mNetworkService = new ServiceGenerator(this);
         mGridPresenter = new GridPresenter(this, mNetworkService);
 
