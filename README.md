@@ -16,7 +16,7 @@ Submitted by: Leon Cam
 1. [Retrofit](http://github.com/square/retrofit) - REST webservices
 2. [Google GSON](https://github.com/google/gson) - Serialization/Deserialization of service responses
 3. [Picasso](http://square.github.io/picasso/) - Image downloading and caching library for Android.
-4. FlickrAPI
+4. Flickr API
 
 ## Changelog
 
@@ -28,6 +28,7 @@ ver 0.1.1
 
 ver 0.1.2
 * [x] Users can now swipe down on list of search results to refresh
+* [x] Fixed keyboard not hiding when app starts up
 
 ## Screenshots
 
