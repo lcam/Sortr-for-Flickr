@@ -12,7 +12,6 @@ import com.squareup.picasso.Picasso;
 public class FullSizeImageActivity extends AppCompatActivity {
 
     String imageLink;
-    String title;
     String author;
     ImageView imageView;
     TextView imageAuthor;
@@ -21,15 +20,6 @@ public class FullSizeImageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_image);
-
-        // Find the toolbar view inside the activity layout
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //title = getIntent().getStringExtra("title");
-        //toolbar.setTitle(title);
-        // Sets the Toolbar to act as the ActionBar for this Activity window.
-        //setSupportActionBar(toolbar);
-
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         author = getIntent().getStringExtra("author");
         imageAuthor = (TextView) findViewById(R.id.image_author);

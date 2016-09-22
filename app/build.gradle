@@ -10,6 +10,9 @@ android {
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+
+        //for Expresso
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -17,6 +20,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+//    packagingOptions {
+//        pickFirst('META-INF/maven/com.google.guava/guava/pom.xml')
+//        pickFirst('META-INF/maven/com.google.guava/guava/pom.properties')
+//    }
 }
 
 dependencies {
@@ -32,4 +40,29 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
 
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:1.10.19'
+
+    //Force usage of support annotations in the test app, since it is internally used by the runner module
+    androidTestCompile 'com.android.support:support-annotations:24.2.1'
+    androidTestCompile 'org.hamcrest:hamcrest-library:1.1'
+    // Android JUnit Runner
+    androidTestCompile 'com.android.support.test:runner:0.5'
+    // JUnit4 Rules
+    androidTestCompile 'com.android.support.test:rules:0.5'
+
+    // Espresso core
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    // Espresso-contrib for DatePicker, RecyclerView, Drawer actions, Accessibility checks, CountingIdlingResource
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2.2') {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude module: 'recyclerview-v7'
+    }
+    // Espresso-web for WebView support
+    androidTestCompile 'com.android.support.test.espresso:espresso-web:2.2.2'
+    // Espresso-idling-resource for synchronization with background jobs
+    androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
+    // Espresso-intents for validation and stubbing of Intents
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.2'
 }

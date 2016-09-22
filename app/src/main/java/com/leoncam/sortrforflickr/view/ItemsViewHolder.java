@@ -9,7 +9,7 @@ import com.leoncam.sortrforflickr.R;
 
 // Provide a direct reference to each of the views within a data item
 // Used to cache the views within the item layout for fast access
-public class ItemsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
+public class ItemsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     // Your holder should contain a member variable
     // for any view that will be set as you render a row
     public ImageView imageThumbnail;
@@ -31,12 +31,6 @@ public class ItemsViewHolder extends RecyclerView.ViewHolder implements View.OnC
     @Override
     public void onClick(View view) {
         mListener.onImageThumbnail((ImageView)view);
-    }
-
-    @Override
-    public boolean onLongClick(View view) {
-        //mListener.onTaskNameLongClick(view);
-        return true;
     }
 
     public static interface IMyViewHolderClicks {

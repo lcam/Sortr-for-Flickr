@@ -47,22 +47,4 @@ public class ServiceGenerator {
         });
     }
 
-//    public void loadTags() {
-//        Call<FlickrHotTags> call = flickrClient.loadTags();
-//        // asynchronous call to API
-//        call.enqueue(new Callback<FlickrHotTags>() {
-//            @Override
-//            public void onResponse(Call<FlickrHotTags> call, Response<FlickrHotTags> response) {
-//                FlickrHotTags flickrHotTags = response.body();
-//                presenter.updateTags(flickrHotTags);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<FlickrHotTags> call, Throwable t) {
-//                Log.d("Error", t.getMessage());
-//                presenter.updateViewFailed();
-//            }
-//        });
-//    }
-
 }
