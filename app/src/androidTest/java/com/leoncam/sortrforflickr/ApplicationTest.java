@@ -46,18 +46,18 @@ public class ApplicationTest {
     // clickOnImage_ShowFullImageScreen Test will fail - Espresso doesn't wait for RecyclerView to load entries.
     // Need to create custom Espresso Idling Resource to handle Retrofit API calls.
     // Espresso UI tests only handle standard asynctasks by default.
-//    @Test
-//    public void clickOnImage_ShowFullImageScreen() {
-//        Intent intent = new Intent();
-//        mainActivityTestRule.launchActivity(intent);
-//
-//        // Click an image at position 0
-//        onView(withId(R.id.rvImages))
-//                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
-//
-//        // Verify full image is displayed
-//        onView(withId(R.id.image_full))
-//                .check(matches(isDisplayed()));
-//
-//    }
+    @Test
+    public void clickOnImage_ShowFullImageScreen() {
+        Intent intent = new Intent();
+        mainActivityTestRule.launchActivity(intent);
+
+        // Click an image at position 0
+        onView(withId(R.id.rvImages))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+
+        // Verify full image is displayed
+        onView(withId(R.id.image_full))
+                .check(matches(isDisplayed()));
+
+    }
 }
