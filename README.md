@@ -1,8 +1,8 @@
-# Sortr for Flickr ver 0.1.2
+# Sortr for Flickr ver 0.1.3
 
 Sortr for Flickr searches for Flickr posts
 
-Submitted by: Leon Cam
+Developed by: Leon Cam
 
 ## Features
 
@@ -16,8 +16,9 @@ Submitted by: Leon Cam
 1. [Retrofit](http://github.com/square/retrofit) - REST web services
 2. [Google GSON](https://github.com/google/gson) - Serialization/Deserialization of service responses
 3. [Picasso](http://square.github.io/picasso/) - Image downloading and caching library for Android.
-4. Flickr API
-5. MVP (Model-View-Presenter) Pattern
+4. [Butterknife](http://jakewharton.github.io/butterknife/) - Bind Android views and callbacks to fields and methods
+5. Flickr API
+6. MVP (Model-View-Presenter) Pattern
 
 ## Changelog
 
@@ -33,6 +34,7 @@ ver 0.1.2
 
 ver 0.1.3
 * [x] Display image title on full image page instead of image author
+* [x] Integrated Butterknife into project to reduce boilerplate code
 
 ## Screenshots
 

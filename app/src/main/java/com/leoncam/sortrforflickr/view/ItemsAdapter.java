@@ -16,18 +16,14 @@ import java.util.List;
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsViewHolder>{
 
-    // Store a member variable for the tasks
     private List<Item> mItems;
-    // Store the context for easy access
     private final Context mContext;
 
-    // Pass in the task array into the constructor
     public ItemsAdapter(Context context, List<Item> items) {
         mItems = items;
         mContext = context;
     }
 
-    // Easy access to the context object in the recyclerview
     private Context getContext() {
         return mContext;
     }

@@ -23,31 +23,37 @@ import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
 import com.leoncam.sortrforflickr.services.ServiceGenerator;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
 
-    private RecyclerView rvItems;
+    @BindView(R.id.toolbar)
+        Toolbar toolbar;
+    @BindView(R.id.rvImages)
+        RecyclerView rvItems;
+    @BindView(R.id.etTag)
+        EditText mEditText;
+    @BindView(R.id.refresh_layout)
+        SwipeRefreshLayout swipeRefreshLayout;
+
     private GridLayoutManager layoutManager;
     private ItemsAdapter adapter;
     int numColumn = 2;
 
-    private EditText mEditText;
     private String tagInput = "";
     private GridPresenter mGridPresenter;
     private ServiceGenerator mNetworkService;
-    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        // Find the toolbar view inside the activity layout
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
-        // Get field from view
-        mEditText = (EditText) this.findViewById(R.id.etTag);
         // Setup a callback when the "Done" button is pressed on keyboard
         mEditText.setOnEditorActionListener(this);
 
@@ -59,15 +65,12 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         mNetworkService = new ServiceGenerator(this);
         mGridPresenter = new GridPresenter(this, mNetworkService);
 
-        rvItems = (RecyclerView)findViewById(R.id.rvImages);
-
         getData("");
 
         layoutManager = new GridLayoutManager(this, numColumn);
         rvItems.setLayoutManager(layoutManager);
 
         // Swipe down to refresh
-        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
