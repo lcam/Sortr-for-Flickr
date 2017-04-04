@@ -9,21 +9,23 @@ import android.widget.TextView;
 import com.leoncam.sortrforflickr.R;
 import com.squareup.picasso.Picasso;
 
+import static android.R.attr.author;
+
 public class FullSizeImageActivity extends AppCompatActivity {
 
     String imageLink;
-    String author;
+    String title;
     ImageView imageView;
-    TextView imageAuthor;
+    TextView imageTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_full_image);
 
-        author = getIntent().getStringExtra("author");
-        imageAuthor = (TextView) findViewById(R.id.image_author);
-        imageAuthor.setText("Author: " + author);
+        title = getIntent().getStringExtra("title");
+        imageTitle = (TextView) findViewById(R.id.image_title);
+        imageTitle.setText("Title: " + title);
 
         imageLink = getIntent().getStringExtra("image_link");
         imageView = (ImageView) findViewById(R.id.image_full);

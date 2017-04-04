@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     private String tagInput = "";
     private GridPresenter mGridPresenter;
     private ServiceGenerator mNetworkService;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
 
         // Find the toolbar view inside the activity layout
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setTitle("Sortr for Flickr");
         // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
@@ -59,21 +59,21 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         mNetworkService = new ServiceGenerator(this);
         mGridPresenter = new GridPresenter(this, mNetworkService);
 
-        // Swipe down to refresh
-        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getData(tagInput);
-            }
-        });
-
         rvItems = (RecyclerView)findViewById(R.id.rvImages);
 
         getData("");
 
         layoutManager = new GridLayoutManager(this, numColumn);
         rvItems.setLayoutManager(layoutManager);
+
+        // Swipe down to refresh
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getData(tagInput);
+            }
+        });
     }
 
     @Override
@@ -110,10 +110,12 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     public void updateList(FlickrImages images) {
         adapter = new ItemsAdapter(getApplicationContext(), images.getItems());
         rvItems.setAdapter(adapter);
+        swipeRefreshLayout.setRefreshing(false); //suppress loading spinner after refresh
     }
 
     public void loadFailed() {
         Snackbar.make(rvItems, "Images could not be loaded", Snackbar.LENGTH_LONG).show();
+        swipeRefreshLayout.setRefreshing(false); //suppress loading spinner after refresh
     }
 
     @Override

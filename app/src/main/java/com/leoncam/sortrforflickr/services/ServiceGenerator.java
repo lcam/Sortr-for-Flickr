@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "https://api.flickr.com/services/";
+    private static final String API_BASE_URL = "https://api.flickr.com/services/";
     private FlickrClient flickrClient;
     private GridPresenter presenter;
 
