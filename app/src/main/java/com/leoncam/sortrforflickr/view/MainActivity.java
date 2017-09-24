@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
 
-        mNetworkService = new ServiceGenerator(this);
+        mNetworkService = new ServiceGenerator();
         mGridPresenter = new GridPresenter(this, mNetworkService);
 
         getData("");

@@ -13,6 +13,7 @@ public class GridPresenter {
     public GridPresenter(MainActivity view, ServiceGenerator service) {
         this.view = view;
         this.service = service;
+        service.setCallback(this);
     }
 
     public void loadData(String tag) {

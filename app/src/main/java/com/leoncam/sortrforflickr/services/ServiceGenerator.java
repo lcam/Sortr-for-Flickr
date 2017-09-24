@@ -18,15 +18,17 @@ public class ServiceGenerator {
     private FlickrClient flickrClient;
     private GridPresenter presenter;
 
-    public ServiceGenerator(MainActivity mainActivity) {
-        presenter = new GridPresenter(mainActivity, this);
-
+    public ServiceGenerator() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         flickrClient = retrofit.create(FlickrClient.class);
+    }
+
+    public void setCallback(GridPresenter presenter){
+        this.presenter = presenter;
     }
 
     public void loadData(String tag) {
@@ -46,5 +48,4 @@ public class ServiceGenerator {
             }
         });
     }
-
 }
