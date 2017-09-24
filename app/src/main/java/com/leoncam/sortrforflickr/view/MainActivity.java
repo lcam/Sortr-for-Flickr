@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -88,22 +87,12 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.miSearch:
-                tagInput = mEditText.getText().toString();
-                getData(tagInput);
+        return mGridPresenter.onOptionsItemSelected(item);
+    }
 
-                //hide keyboard
-                View view = this.getCurrentFocus();
-                if (view != null) {
-                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    @Override
+    public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+        return mGridPresenter.onEditorAction(actionId);
     }
 
     public void getData(String tag) {
@@ -121,21 +110,17 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         swipeRefreshLayout.setRefreshing(false); //suppress loading spinner after refresh
     }
 
-    @Override
-    public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-        if (EditorInfo.IME_ACTION_DONE == actionId) {
-            tagInput = mEditText.getText().toString();
-            getData(tagInput);
+    public void submit(){
+        tagInput = mEditText.getText().toString();
+        getData(tagInput);
 
-            //hide keyboard
-            View view = this.getCurrentFocus();
-            if (view != null) {
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        //hide keyboard
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-
-            return true;
         }
-        return false;
     }
 }
