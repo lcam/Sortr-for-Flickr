@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
-import com.leoncam.sortrforflickr.view.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
