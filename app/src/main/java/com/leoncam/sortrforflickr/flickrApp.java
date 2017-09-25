@@ -5,7 +5,7 @@ import android.app.Application;
 import com.leoncam.sortrforflickr.dagger.components.DaggerNetComponent;
 import com.leoncam.sortrforflickr.dagger.components.NetComponent;
 import com.leoncam.sortrforflickr.dagger.modules.AppModule;
-import com.leoncam.sortrforflickr.dagger.modules.NetModule;
+import com.leoncam.sortrforflickr.dagger.modules.ServiceModule;
 
 public class flickrApp extends Application{
     private NetComponent netComponent;
@@ -16,7 +16,7 @@ public class flickrApp extends Application{
 
         netComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule("test"))
+                .serviceModule(new ServiceModule())
                 .build();
     }
 

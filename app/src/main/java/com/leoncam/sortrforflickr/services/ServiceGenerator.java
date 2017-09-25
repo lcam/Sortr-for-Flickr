@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceGenerator {
 
     private static final String API_BASE_URL = "https://api.flickr.com/services/";
-    private FlickrClient flickrClient;
+    private FlickrAPI flickrAPI;
     private GridPresenter presenter;
 
     public ServiceGenerator() {
@@ -23,7 +23,7 @@ public class ServiceGenerator {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        flickrClient = retrofit.create(FlickrClient.class);
+        flickrAPI = retrofit.create(FlickrAPI.class);
     }
 
     public void setCallback(GridPresenter presenter){
@@ -31,7 +31,7 @@ public class ServiceGenerator {
     }
 
     public void loadData(String tag) {
-        Call<FlickrImages> call = flickrClient.loadImages(tag);
+        Call<FlickrImages> call = flickrAPI.loadImages(tag);
         // asynchronous call to API
         call.enqueue(new Callback<FlickrImages>() {
             @Override
