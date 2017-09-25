@@ -12,7 +12,7 @@ public class ServiceModule {
 
     @Provides
     @Singleton
-    public ServiceGenerator serviceGenerator(){
+    public ServiceGenerator provideServiceGenerator(){
         return new ServiceGenerator();
     }
 }

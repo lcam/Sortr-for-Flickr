@@ -1,6 +1,5 @@
 package com.leoncam.sortrforflickr.dagger.components;
 
-import com.leoncam.sortrforflickr.dagger.modules.AppModule;
 import com.leoncam.sortrforflickr.dagger.modules.ServiceModule;
 import com.leoncam.sortrforflickr.view.MainActivity;
 
@@ -10,8 +9,8 @@ import dagger.Component;
 
 @Singleton
 @Component(
-        modules = { AppModule.class, ServiceModule.class }
+        modules = { ServiceModule.class }
 )
-public interface NetComponent {
+public interface PresenterComponent {
     void inject(MainActivity activity);
 }

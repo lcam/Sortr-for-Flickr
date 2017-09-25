@@ -18,9 +18,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.leoncam.sortrforflickr.R;
+import com.leoncam.sortrforflickr.dagger.components.PresenterComponent;
+import com.leoncam.sortrforflickr.dagger.modules.ServiceModule;
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
 import com.leoncam.sortrforflickr.services.ServiceGenerator;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -50,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        // Sets the Toolbar to act as the ActionBar for this Activity window.
         setSupportActionBar(toolbar);
 
         // Setup a callback when the "Done" button is pressed on keyboard
@@ -80,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
