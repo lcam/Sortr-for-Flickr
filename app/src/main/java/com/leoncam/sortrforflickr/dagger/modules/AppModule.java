@@ -1,6 +1,9 @@
 package com.leoncam.sortrforflickr.dagger.modules;
 
 import android.app.Application;
+import android.content.Context;
+
+import com.leoncam.sortrforflickr.FlickrApp;
 
 import javax.inject.Singleton;
 
@@ -17,7 +20,19 @@ public class AppModule {
 
     @Provides
     @Singleton
-    Application providesApplication() {
+    Application provideApplication() {
+        return application;
+    }
+
+    @Provides
+    @Singleton
+    public FlickrApp provideFlickrApp() {
+        return (FlickrApp) application;
+    }
+
+    @Provides
+    @Singleton
+    public Context provideApplicationContext() {
         return application;
     }
 }

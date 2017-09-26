@@ -5,9 +5,9 @@ import android.app.Application;
 import com.leoncam.sortrforflickr.dagger.components.DaggerPresenterComponent;
 import com.leoncam.sortrforflickr.dagger.components.PresenterComponent;
 import com.leoncam.sortrforflickr.dagger.modules.AppModule;
-import com.leoncam.sortrforflickr.dagger.modules.ServiceModule;
+import com.leoncam.sortrforflickr.dagger.modules.PresenterModule;
 
-public class flickrApp extends Application{
+public class FlickrApp extends Application{
     private PresenterComponent presenterComponent;
 
     @Override
@@ -16,7 +16,7 @@ public class flickrApp extends Application{
 
         presenterComponent = DaggerPresenterComponent.builder()
                 .appModule(new AppModule(this))
-                .serviceModule(new ServiceModule())
+                .presenterModule(new PresenterModule())
                 .build();
     }
 

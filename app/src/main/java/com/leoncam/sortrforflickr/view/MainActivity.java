@@ -17,9 +17,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.leoncam.sortrforflickr.FlickrApp;
 import com.leoncam.sortrforflickr.R;
 import com.leoncam.sortrforflickr.dagger.components.PresenterComponent;
-import com.leoncam.sortrforflickr.dagger.modules.ServiceModule;
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
 import com.leoncam.sortrforflickr.services.ServiceGenerator;
@@ -31,6 +31,8 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
 
+    PresenterComponent presenterComponent;
+
     @BindView(R.id.toolbar)
         Toolbar toolbar;
     @BindView(R.id.rvImages)
@@ -40,19 +42,26 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     @BindView(R.id.refresh_layout)
         SwipeRefreshLayout swipeRefreshLayout;
 
+    @Inject
+        GridPresenter gridPresenter;
+    @Inject
+        ServiceGenerator serviceGenerator;
+
     private GridLayoutManager layoutManager;
     private ItemsAdapter adapter;
     int numColumn = 2;
 
     private String tagInput = "";
-    private GridPresenter mGridPresenter;
-    private ServiceGenerator mNetworkService;
+//    private GridPresenter gridPresenter;
+//    private ServiceGenerator serviceGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        ((FlickrApp) getApplication()).getPresenterComponent().inject(this);
 
         setSupportActionBar(toolbar);
 
@@ -64,8 +73,8 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
 
-        mNetworkService = new ServiceGenerator();
-        mGridPresenter = new GridPresenter(this, mNetworkService);
+        //serviceGenerator = new ServiceGenerator();
+        //gridPresenter = new GridPresenter(this, serviceGenerator);
 
         getData("");
 
@@ -89,16 +98,16 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        return mGridPresenter.onOptionsItemSelected(item);
+        return gridPresenter.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-        return mGridPresenter.onEditorAction(actionId);
+        return gridPresenter.onEditorAction(actionId);
     }
 
     public void getData(String tag) {
-        mGridPresenter.loadData(tag);
+        gridPresenter.loadData(tag);
     }
 
     public void updateList(FlickrImages images) {
