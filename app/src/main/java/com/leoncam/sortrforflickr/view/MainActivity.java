@@ -19,7 +19,6 @@ import android.widget.TextView;
 
 import com.leoncam.sortrforflickr.FlickrApp;
 import com.leoncam.sortrforflickr.R;
-import com.leoncam.sortrforflickr.dagger.components.PresenterComponent;
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
 import com.leoncam.sortrforflickr.services.ServiceGenerator;
@@ -31,8 +30,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
 
-    PresenterComponent presenterComponent;
-
     @BindView(R.id.toolbar)
         Toolbar toolbar;
     @BindView(R.id.rvImages)
@@ -42,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     @BindView(R.id.refresh_layout)
         SwipeRefreshLayout swipeRefreshLayout;
 
-    @Inject
-        GridPresenter gridPresenter;
+//    @Inject
+//        GridPresenter gridPresenter;
     @Inject
         ServiceGenerator serviceGenerator;
 
@@ -52,8 +49,8 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     int numColumn = 2;
 
     private String tagInput = "";
-//    private GridPresenter gridPresenter;
-//    private ServiceGenerator serviceGenerator;
+    private GridPresenter gridPresenter;
+    //private ServiceGenerator serviceGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        ((FlickrApp) getApplication()).getPresenterComponent().inject(this);
+        ((FlickrApp) getApplication()).getApplicationComponent().inject(this);
 
         setSupportActionBar(toolbar);
 
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         );
 
         //serviceGenerator = new ServiceGenerator();
-        //gridPresenter = new GridPresenter(this, serviceGenerator);
+        gridPresenter = new GridPresenter(this, serviceGenerator);
 
         getData("");
 
