@@ -1,4 +1,4 @@
-# Sortr for Flickr ver 0.1.3
+# Sortr for Flickr ver 0.1.4
 
 Sortr for Flickr searches for Flickr posts
 
