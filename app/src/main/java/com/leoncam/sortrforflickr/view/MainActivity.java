@@ -19,6 +19,8 @@ import android.widget.TextView;
 
 import com.leoncam.sortrforflickr.FlickrApp;
 import com.leoncam.sortrforflickr.R;
+import com.leoncam.sortrforflickr.dagger.components.PresenterComponent;
+import com.leoncam.sortrforflickr.dagger.modules.PresenterModule;
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
 import com.leoncam.sortrforflickr.services.ServiceGenerator;
@@ -27,6 +29,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 public class MainActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
 
@@ -39,27 +42,26 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     @BindView(R.id.refresh_layout)
         SwipeRefreshLayout swipeRefreshLayout;
 
-//    @Inject
-//        GridPresenter gridPresenter;
+    @Inject
+        GridPresenter gridPresenter;
     @Inject
         ServiceGenerator serviceGenerator;
 
+    PresenterComponent presenterComponent;
+    Unbinder unbinder;
     private GridLayoutManager layoutManager;
     private ItemsAdapter adapter;
     int numColumn = 2;
 
     private String tagInput = "";
-    private GridPresenter gridPresenter;
-    //private ServiceGenerator serviceGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 
-        ((FlickrApp) getApplication()).getApplicationComponent().inject(this);
-
+        setupActivityComponent();
         setSupportActionBar(toolbar);
 
         // Setup a callback when the "Done" button is pressed on keyboard
@@ -69,9 +71,6 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
         getWindow().setSoftInputMode(
                 WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
         );
-
-        //serviceGenerator = new ServiceGenerator();
-        gridPresenter = new GridPresenter(this, serviceGenerator);
 
         getData("");
 
@@ -85,6 +84,18 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
                 getData(tagInput);
             }
         });
+    }
+
+    private void setupActivityComponent() {
+        presenterComponent = ((FlickrApp) getApplication()).getApplicationComponent()
+                .plus(new PresenterModule(this));
+        presenterComponent.inject(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 
     @Override

@@ -13,12 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module
 public class ServiceModule {
 
-//    @Provides
-//    @Singleton
-//    public ServiceGenerator provideServiceGenerator(){
-//        return new ServiceGenerator();
-//    }
-
     private String BASE_URL = "https://api.flickr.com/services/";
 
     @Provides

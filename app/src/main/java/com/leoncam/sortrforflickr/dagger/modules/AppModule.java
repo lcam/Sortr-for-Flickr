@@ -17,22 +17,4 @@ public class AppModule {
     public AppModule(Application application) {
         this.application = application;
     }
-
-//    @Provides
-//    @Singleton
-//    Application provideApplication() {
-//        return application;
-//    }
-
-//    @Provides
-//    @Singleton
-//    public FlickrApp provideFlickrApp() {
-//        return (FlickrApp) application;
-//    }
-//
-//    @Provides
-//    @Singleton
-//    public Context provideApplicationContext() {
-//        return application;
-//    }
 }
