@@ -44,8 +44,6 @@ ver 0.1.4
 
 <img src='http://i.imgur.com/3lEHXqt.png' title='Screenshots' width='' alt='Screenshots' />
 
-## Notes
-
 ## License
 
     Copyright 2016 Leon Cam
