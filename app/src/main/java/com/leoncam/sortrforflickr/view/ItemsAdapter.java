@@ -43,7 +43,7 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsViewHolder>{
             public void onImageThumbnail(ImageView callerImage) {
                 final int position = viewHolder.getAdapterPosition();
 
-                Intent intent = new Intent(callerImage.getContext(), FullSizeImageActivity.class);
+                Intent intent = new Intent(callerImage.getContext(), FullSizeImageView.class);
                 intent.putExtra("image_link", mItems.get(position).getMedia().getM());
                 intent.putExtra("title", mItems.get(position).getTitle());
                 intent.putExtra("author", mItems.get(position).getAuthor());
@@ -63,7 +63,6 @@ public class ItemsAdapter extends RecyclerView.Adapter<ItemsViewHolder>{
         Picasso.with(viewHolder.imageThumbnail.getContext())
                 .load(imageUrl)
                 .resize(700, 700)
-                //.fit()
                 .centerCrop()
                 .into(viewHolder.imageThumbnail);
     }

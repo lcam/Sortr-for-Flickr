@@ -2,7 +2,6 @@ package com.leoncam.sortrforflickr.view;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,9 +11,7 @@ import com.squareup.picasso.Picasso;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.R.attr.author;
-
-public class FullSizeImageActivity extends AppCompatActivity {
+public class FullSizeImageView extends AppCompatActivity {
 
     @BindView(R.id.image_title)
             TextView imageTitle;

@@ -2,23 +2,21 @@ package com.leoncam.sortrforflickr;
 
 import android.app.Application;
 
-import com.leoncam.sortrforflickr.dagger.components.ApplicationComponent;
-import com.leoncam.sortrforflickr.dagger.components.DaggerApplicationComponent;
-import com.leoncam.sortrforflickr.dagger.modules.AppModule;
+import com.leoncam.sortrforflickr.dagger.components.AppComponent;
+import com.leoncam.sortrforflickr.dagger.components.DaggerAppComponent;
 
 public class FlickrApp extends Application{
-    private ApplicationComponent applicationComponent;
+    private AppComponent appComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        applicationComponent = DaggerApplicationComponent.builder()
-                .appModule(new AppModule(this))
+        appComponent = DaggerAppComponent.builder()
                 .build();
     }
 
-    public ApplicationComponent getApplicationComponent(){
-        return applicationComponent;
+    public AppComponent getAppComponent(){
+        return appComponent;
     }
 }

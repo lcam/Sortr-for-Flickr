@@ -5,27 +5,17 @@ import android.util.Log;
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
 
-import javax.inject.Inject;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ServiceGenerator {
+public class FlickrServices {
 
     //private static final String API_BASE_URL = "https://api.flickr.com/services/";
     private FlickrAPI flickrAPI;
     private GridPresenter presenter;
 
-    public ServiceGenerator(FlickrAPI flickrAPI) {
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(API_BASE_URL)
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//
-//        flickrAPI = retrofit.create(FlickrAPI.class);
+    public FlickrServices(FlickrAPI flickrAPI) {
         this.flickrAPI = flickrAPI;
     }
 

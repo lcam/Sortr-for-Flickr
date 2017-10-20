@@ -19,11 +19,11 @@ import android.widget.TextView;
 
 import com.leoncam.sortrforflickr.FlickrApp;
 import com.leoncam.sortrforflickr.R;
-import com.leoncam.sortrforflickr.dagger.components.PresenterComponent;
-import com.leoncam.sortrforflickr.dagger.modules.PresenterModule;
+import com.leoncam.sortrforflickr.dagger.components.MainFeedComponent;
+import com.leoncam.sortrforflickr.dagger.modules.MainFeedModule;
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
-import com.leoncam.sortrforflickr.services.ServiceGenerator;
+import com.leoncam.sortrforflickr.services.FlickrServices;
 
 import javax.inject.Inject;
 
@@ -31,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public class MainActivity extends AppCompatActivity implements TextView.OnEditorActionListener {
+public class MainFeedView extends AppCompatActivity implements TextView.OnEditorActionListener {
 
     @BindView(R.id.toolbar)
         Toolbar toolbar;
@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     @Inject
         GridPresenter gridPresenter;
     @Inject
-        ServiceGenerator serviceGenerator;
+    FlickrServices flickrServices;
 
-    PresenterComponent presenterComponent;
+    MainFeedComponent mainFeedComponent;
     Unbinder unbinder;
     private GridLayoutManager layoutManager;
     private ItemsAdapter adapter;
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_feed);
         unbinder = ButterKnife.bind(this);
 
         setupActivityComponent();
@@ -87,9 +87,9 @@ public class MainActivity extends AppCompatActivity implements TextView.OnEditor
     }
 
     private void setupActivityComponent() {
-        presenterComponent = ((FlickrApp) getApplication()).getApplicationComponent()
-                .plus(new PresenterModule(this));
-        presenterComponent.inject(this);
+        mainFeedComponent = ((FlickrApp) getApplication()).getAppComponent()
+                .plus(new MainFeedModule(this));
+        mainFeedComponent.inject(this);
     }
 
     @Override

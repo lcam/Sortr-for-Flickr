@@ -5,16 +5,15 @@ import android.view.inputmethod.EditorInfo;
 
 import com.leoncam.sortrforflickr.R;
 import com.leoncam.sortrforflickr.model.FlickrImages;
-import com.leoncam.sortrforflickr.services.ServiceGenerator;
-import com.leoncam.sortrforflickr.view.MainActivity;
-
+import com.leoncam.sortrforflickr.services.FlickrServices;
+import com.leoncam.sortrforflickr.view.MainFeedView;
 
 public class GridPresenter {
 
-    private MainActivity view;
-    private ServiceGenerator service;
+    private MainFeedView view;
+    private FlickrServices service;
 
-    public GridPresenter(MainActivity view, ServiceGenerator service) {
+    public GridPresenter(MainFeedView view, FlickrServices service) {
         this.view = view;
         this.service = service;
         service.setCallback(this);

@@ -1,12 +1,11 @@
 package com.leoncam.sortrforflickr;
 
 import android.content.Intent;
-import android.support.test.espresso.Espresso;
 import android.support.test.espresso.contrib.RecyclerViewActions;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.leoncam.sortrforflickr.view.MainActivity;
+import com.leoncam.sortrforflickr.view.MainFeedView;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,8 +25,8 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class ApplicationTest {
 
     @Rule
-    public ActivityTestRule<MainActivity> mainActivityTestRule =
-            new ActivityTestRule<>(MainActivity.class, true, false);
+    public ActivityTestRule<MainFeedView> mainActivityTestRule =
+            new ActivityTestRule<>(MainFeedView.class, true, false);
 
     @Test
     public void swipeDown_RefreshImageGrid() {

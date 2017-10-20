@@ -2,15 +2,14 @@ package com.leoncam.sortrforflickr;
 
 import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.presenter.GridPresenter;
-import com.leoncam.sortrforflickr.services.ServiceGenerator;
-import com.leoncam.sortrforflickr.view.MainActivity;
+import com.leoncam.sortrforflickr.services.FlickrServices;
+import com.leoncam.sortrforflickr.view.MainFeedView;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -23,15 +22,15 @@ public class GridPresenterUnitTest {
     private GridPresenter mGridPresenter;
 
     @Mock
-    private MainActivity mainActivity;
+    private MainFeedView mainFeedView;
 
     @Mock
-    private ServiceGenerator serviceGenerator;
+    private FlickrServices flickrServices;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        mGridPresenter = new GridPresenter(mainActivity, serviceGenerator);
+        mGridPresenter = new GridPresenter(mainFeedView, flickrServices);
     }
 
     @Test
@@ -40,13 +39,13 @@ public class GridPresenterUnitTest {
         mGridPresenter.loadData("");
 
         // Verify network service makes network call
-        verify(serviceGenerator).loadData("");
+        verify(flickrServices).loadData("");
 
         // Attempt to pass the data back to the view
         mGridPresenter.updateView(flickrImages);
 
         // Verify view attempts to update
-        verify(mainActivity).updateList(flickrImages);
+        verify(mainFeedView).updateList(flickrImages);
     }
 
     @Test
@@ -55,12 +54,12 @@ public class GridPresenterUnitTest {
         mGridPresenter.loadData("");
 
         // Verify network service makes network call
-        verify(serviceGenerator).loadData("");
+        verify(flickrServices).loadData("");
 
         // Fails to retrieve data and call presenter to display error in UI
         mGridPresenter.updateViewFailed();
 
         // Verify view shows error message
-        verify(mainActivity).loadFailed();
+        verify(mainFeedView).loadFailed();
     }
 }
