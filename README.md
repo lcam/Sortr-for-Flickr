@@ -42,7 +42,8 @@ ver 0.1.4
 
 ## Screenshots
 
-<img src='http://i.imgur.com/3lEHXqt.png' title='Screenshots' width='' alt='Screenshots' />
+<img src='https://i.imgur.com/E6vQNSF.png' title='Screenshots' width='300px' alt='Screenshots' /> <img src='https://i.imgur.com/zskJ56h.png' title='Screenshots' width='300px' alt='Screenshots' />
+
 
 ## License
 
