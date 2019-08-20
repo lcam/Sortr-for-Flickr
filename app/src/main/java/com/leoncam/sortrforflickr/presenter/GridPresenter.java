@@ -8,7 +8,7 @@ import com.leoncam.sortrforflickr.model.FlickrImages;
 import com.leoncam.sortrforflickr.services.FlickrServices;
 import com.leoncam.sortrforflickr.view.MainFeedView;
 
-public class GridPresenter {
+public class GridPresenter implements ServiceCallback{
 
     private MainFeedView view;
     private FlickrServices service;
@@ -23,10 +23,12 @@ public class GridPresenter {
         service.loadData(tag);
     }
 
+    @Override
     public void updateView(FlickrImages flickrImages) {
         view.updateList(flickrImages);
     }
 
+    @Override
     public void updateViewFailed() {
         view.loadFailed();
     }
