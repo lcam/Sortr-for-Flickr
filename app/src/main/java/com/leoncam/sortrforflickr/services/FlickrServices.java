@@ -33,13 +33,13 @@ public class FlickrServices {
             @Override
             public void onResponse(Call<FlickrImages> call, Response<FlickrImages> response) {
                 FlickrImages flickrImages = response.body();
-                serviceCallback.updateView(flickrImages);
+                serviceCallback.onFlickrImagesLoaded(flickrImages);
             }
 
             @Override
             public void onFailure(Call<FlickrImages> call, Throwable t) {
                 Log.d("Error", t.getMessage());
-                serviceCallback.updateViewFailed();
+                serviceCallback.onFlickrImagesError();
             }
         });
     }

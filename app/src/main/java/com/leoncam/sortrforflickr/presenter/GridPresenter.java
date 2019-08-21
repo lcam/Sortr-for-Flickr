@@ -24,12 +24,12 @@ public class GridPresenter implements ServiceCallback{
     }
 
     @Override
-    public void updateView(FlickrImages flickrImages) {
+    public void onFlickrImagesLoaded(FlickrImages flickrImages) {
         view.updateList(flickrImages);
     }
 
     @Override
-    public void updateViewFailed() {
+    public void onFlickrImagesError() {
         view.loadFailed();
     }
 

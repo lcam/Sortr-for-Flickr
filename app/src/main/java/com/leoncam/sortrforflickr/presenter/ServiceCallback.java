@@ -5,6 +5,6 @@ import com.leoncam.sortrforflickr.model.FlickrImages;
 import java.util.List;
 
 public interface ServiceCallback {
-    void updateView(FlickrImages flickrImages);
-    void updateViewFailed();
+    void onFlickrImagesLoaded(FlickrImages flickrImages);
+    void onFlickrImagesError();
 }
